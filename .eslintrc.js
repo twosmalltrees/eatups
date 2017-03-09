@@ -34,6 +34,8 @@ module.exports = {
       'optionalDependencies': ['test/unit/index.js']
     }],
     'no-param-reassign': ["error", { "props": false }],
+    'no-restricted-syntax': 0,
+    'arrow-body-style': 0,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }

@@ -1,37 +1,49 @@
 <template>
-  <div class="yum">
-    <h1>yum</h1>
-  </div>
+  <transition name="fade">
+    <div class="yum-wrapper">
+      <div v-if="searching">
+        <pizza-loader />
+      </div>
+      <div v-else>
+        <router-link :to="{ name: 'Welcome' }">Back</router-link>
+        <h1>yum</h1>
+        <ul>
+          <li v-for="eatup in eatups">
+            {{ eatup.name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
+  import PizzaLoader from './PizzaLoader';
+
   export default {
     name: 'Yum',
-    data() {
-      return {
-        msg: '',
-      };
+    computed: {
+      eatups() {
+        return this.$store.state.eatups;
+      },
+      searching() {
+        return this.$store.state.searching || !this.$store.state.eatups;
+      },
+    },
+    components: {
+      PizzaLoader,
     },
   };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  h1, h2 {
-    font-weight: normal;
+  .yum-wrapper {
+    background-color: yellow;
   }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
   }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
+  .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0
   }
 </style>

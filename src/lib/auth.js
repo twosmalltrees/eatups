@@ -12,7 +12,7 @@ function deleteAccessToken() {
 
 export function getAccessToken() {
   const accessToken = localStorage.accessToken;
-  const expiresAt = localStorage.expireAt;
+  const expiresAt = localStorage.expiresAt;
   const tokenExpired = moment(expiresAt).isBefore();
   if (!accessToken || tokenExpired) {
     deleteAccessToken();

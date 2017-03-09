@@ -4,8 +4,16 @@ import Welcome from '@/components/Welcome';
 import Yum from '@/components/Yum';
 import Login from '@/components/Login';
 import AccessToken from '@/components/AccessToken';
+import { userIsLoggedIn } from '../lib/auth';
 
 Vue.use(Router);
+
+function checkUserLogin(to, from, next) {
+  if (!userIsLoggedIn()) {
+    next({ path: '/login' });
+  }
+  next();
+}
 
 export default new Router({
   mode: 'history',
@@ -14,11 +22,14 @@ export default new Router({
       path: '/',
       name: 'Welcome',
       component: Welcome,
+      beforeEnter: checkUserLogin,
     },
     {
       path: '/yum',
       name: 'Yum',
       component: Yum,
+      beforeEnter: checkUserLogin,
+
     },
     {
       path: '/login',

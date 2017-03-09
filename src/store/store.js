@@ -10,6 +10,7 @@ const store = new Vuex.Store({
   state: {
     meetups: [],
     eatups: [],
+    searching: false,
   },
   mutations: {
     gotMeetups(state, payload) {
@@ -18,22 +19,30 @@ const store = new Vuex.Store({
     gotEatups(state, payload) {
       state.eatups = payload;
     },
+    startedSearching(state) {
+      state.searching = true;
+    },
+    finishedSearching(state) {
+      state.searching = false;
+    },
     clearEatups(state) {
       state.eatups = [];
     },
   },
   actions: {
-    async getMeetups({ commit }, searchParams) {
-      commit('gotMeetups', await getMeetups(searchParams));
+    async getMeetups({ commit }, params) {
+      commit('gotMeetups', await getMeetups(params));
     },
     async getEatups({ commit, state }) {
-      commit('gotEatups', await getEatups(state.meetups));
+      await commit('gotEatups', getEatups(state.meetups));
+      await commit('finishedSearching');
     },
     async search({ dispatch, commit }, searchParams) {
-      commit('clearEatups');
+      await commit('clearEatups');
+      await commit('startedSearching');
       router.push('/yum');
       await dispatch('getMeetups', searchParams);
-      await dispatch('getEatups');
+      dispatch('getEatups');
     },
   },
 });

@@ -11,7 +11,6 @@
     name: 'AccessToken',
     created() {
       this.setAccessTokenOrRedirect();
-      // router.push('/');
     },
     methods: {
       setAccessTokenOrRedirect() {
@@ -22,12 +21,13 @@
         const expiresAt = moment().add(parseInt(hash.expires_in, 10), 'seconds');
 
         if (error) {
-          router.push('login');
+          router.push('/login');
         }
 
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('tokenType', tokenType);
         localStorage.setItem('expiresAt', expiresAt);
+        router.push('/');
       },
     },
   };

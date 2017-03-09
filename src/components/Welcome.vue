@@ -1,11 +1,11 @@
 <template>
   <div class="welcome">
     <h1>eatups</h1>
-    <form v-on:submit="onSubmit">
-      <input type="text" id="query" v-model="query" />
+    <form v-on:submit="topicSearch">
+      <input type="text" id="searchString" v-model="searchString" />
       <button type="submit">Search</button>
     </form>
-    <div>{{ query }}</div>
+    <button v-on:click="justEat">I'm just hungry</button>
   </div>
 </template>
 
@@ -16,17 +16,28 @@
     name: 'Welcome',
     data() {
       return {
-        query: '',
+        searchString: '',
       };
     },
     methods: {
       ...mapActions([
         'search',
       ]),
-      onSubmit(event) {
+      topicSearch(event) {
         event.preventDefault();
-        this.search('some search params');
-        console.log('onSubmitRan');
+        navigator.geolocation.getCurrentPosition((position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          this.search({ text: this.searchString, lat, lon });
+        });
+      },
+      justEat(event) {
+        event.preventDefault();
+        navigator.geolocation.getCurrentPosition((position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          this.search({ lat, lon });
+        });
       },
     },
   };
