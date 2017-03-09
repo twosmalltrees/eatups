@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 function removePaidMeetups(meetups) {
   const freeMeetups = _.filter(meetups, (meetup) => {
@@ -15,6 +16,7 @@ function removeStingyMeetups(meetups) {
     const pizza = _.includes(meetup.description, 'pizza');
     const snacks = _.includes(meetup.description, 'snacks');
     const drinks = _.includes(meetup.description, 'drinks');
+    meetup.dayAndTime = moment(meetup.time).format('dddd h:mm a');
     meetup.foodProvided = { food, pizza, snacks, drinks };
     if (food || pizza || snacks || drinks) {
       eatups.push(meetup);

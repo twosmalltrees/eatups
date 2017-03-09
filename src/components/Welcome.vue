@@ -45,8 +45,15 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .welcome {
+    background-color: #ed1c40;
+  }
+
   h1, h2 {
     font-weight: normal;
+    font-family: 'Gochi Hand';
+    font-size: 50px;
+    color: white;
   }
 
   ul {

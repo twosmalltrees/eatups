@@ -8,9 +8,10 @@
         <router-link :to="{ name: 'Welcome' }">Back</router-link>
         <h1>yum</h1>
         <ul>
-          <li v-for="eatup in eatups">
-            {{ eatup.name }}
-          </li>
+          <div v-for="eatup in eatups">
+            <div class="eatup-day">{{ eatup.dayAndTime }}</div>
+            <div class="eatup-name">{{ eatup.name }}</div>
+          </div>
         </ul>
       </div>
     </div>
@@ -38,7 +39,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .yum-wrapper {
-    background-color: yellow;
+    background-color: #ed1c40;
   }
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s

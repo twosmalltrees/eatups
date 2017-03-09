@@ -34,6 +34,7 @@ export default {
   body {
     margin: 0;
     padding: 0;
+    background-color: #ed1c40;
   }
   .child-view {
     position: absolute;
@@ -56,5 +57,6 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    background-color: #ed1c40;
   }
 </style>
