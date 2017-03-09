@@ -10,6 +10,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
+
   export default {
     name: 'Welcome',
     data() {
@@ -18,9 +20,13 @@
       };
     },
     methods: {
+      ...mapActions([
+        'search',
+      ]),
       onSubmit(event) {
         event.preventDefault();
-        console.log('Log');
+        this.search('some search params');
+        console.log('onSubmitRan');
       },
     },
   };

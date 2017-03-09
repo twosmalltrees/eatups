@@ -1,27 +1,41 @@
 import vue from 'vue';
 import Vuex from 'vuex';
-import { getMeetups } from '../lib/meetups'
+import getMeetups from '../lib/meetups';
+import getEatups from '../lib/eatups';
 import router from '../router';
 
 vue.use(Vuex);
 
-const store = new Vuex.store({
+const store = new Vuex.Store({
   state: {
+    meetups: [],
     eatups: [],
   },
-  actions: {
-    async getMeetups({ dispatch, commit }, searchParams) {
-      // commit('gotMeetups', await getMeetups(searchParams));
-      console.log('did nothing');
+  mutations: {
+    gotMeetups(state, payload) {
+      state.meetups = payload;
     },
-    async getEatups({ dispatch, commit, state }) {
-      // await('')
-      console.log('did nothing');
+    gotEatups(state, payload) {
+      state.eatups = payload;
+    },
+    clearEatups(state) {
+      state.eatups = [];
+    },
+  },
+  actions: {
+    async getMeetups({ commit }, searchParams) {
+      commit('gotMeetups', await getMeetups(searchParams));
+    },
+    async getEatups({ commit, state }) {
+      commit('gotEatups', await getEatups(state.meetups));
     },
     async search({ dispatch, commit }, searchParams) {
-      router.push('/yum')
+      commit('clearEatups');
+      router.push('/yum');
       await dispatch('getMeetups', searchParams);
       await dispatch('getEatups');
-    }
+    },
   },
-})
+});
+
+export default store;
