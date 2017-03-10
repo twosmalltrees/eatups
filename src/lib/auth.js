@@ -4,7 +4,7 @@ export function beginImplicitFlow() {
   window.location = 'https://secure.meetup.com/oauth2/authorize?client_id=tbu88fvo4gmnrgpnj8d47u224e&response_type=token&redirect_uri=http://localhost:8080/access_token';
 }
 
-function deleteAccessToken() {
+export function deleteAccessToken() {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('tokenType');
   localStorage.removeItem('expiresAt');

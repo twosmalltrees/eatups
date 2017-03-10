@@ -1,6 +1,7 @@
 <template>
   <div class="welcome">
     <h1>eatups</h1>
+    <a class="logout-button" v-on:click="signOut">SIGN OUT</a>
     <form class="search-form" v-on:submit="topicSearch">
       <input autocomplete="off" placeholder="Learn while you eat..." class="search-input" type="text" id="searchString" v-model="searchString" />
       <button class="search-button" type="submit">Search</button>
@@ -11,6 +12,8 @@
 
 <script>
   import { mapActions } from 'vuex';
+  import router from '../router';
+  import { deleteAccessToken } from '../lib/auth';
 
   export default {
     name: 'Welcome',
@@ -38,6 +41,11 @@
           const lon = position.coords.longitude;
           this.search({ lat, lon });
         });
+      },
+      signOut(event) {
+        event.preventDefault();
+        deleteAccessToken();
+        router.push('/login');
       },
     },
   };
@@ -121,6 +129,18 @@
 
   .search-button:active, .search-button:focus {
     outline: none;
+  }
+
+  .logout-button {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: white;
+    font-family: "Montserrat";
+    font-weight: 800;
+    font-size: 18px;
+    cursor: pointer;
   }
 
   h1, h2 {
