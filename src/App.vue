@@ -22,6 +22,8 @@ export default {
       console.log(to);
       if (to.name === 'Yum' && from.name === 'Welcome') {
         this.transitionName = 'slide-left';
+      } else if (to.name === 'Welcome' && from.name === 'AccessToken') {
+        this.transitionName = 'slide-left';
       } else {
         this.transitionName = 'slide-right';
       }
@@ -34,7 +36,6 @@ export default {
   body {
     margin: 0;
     padding: 0;
-    background-color: #ed1c40;
   }
   .child-view {
     position: absolute;
@@ -57,6 +58,6 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    background-color: #ed1c40;
+    width: 100%;
   }
 </style>
