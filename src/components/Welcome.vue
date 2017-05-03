@@ -27,12 +27,16 @@
         'search',
       ]),
       topicSearch(event) {
+        console.log('ran');
+        console.log(event);
         event.preventDefault();
+        console.log('gothere');
         navigator.geolocation.getCurrentPosition((position) => {
+          console.log('Georan');
           const lat = position.coords.latitude;
           const lon = position.coords.longitude;
           this.search({ text: this.searchString, lat, lon });
-        });
+        }, error => console.log(error));
       },
       justEat(event) {
         event.preventDefault();
