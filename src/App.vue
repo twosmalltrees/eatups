@@ -19,7 +19,6 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log(to);
       if (to.name === 'Yum' && from.name === 'Welcome') {
         this.transitionName = 'slide-left';
       } else if (to.name === 'Welcome' && from.name === 'AccessToken') {

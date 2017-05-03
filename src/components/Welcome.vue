@@ -28,20 +28,15 @@
       ]),
       topicSearch(event) {
         event.preventDefault();
-        navigator.geolocation.getCurrentPosition((position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          console.log(lat, lon);
-          this.search({ text: this.searchString, lat, lon });
-        }, error => console.log(error));
+        const lat = -33.887906099999995;
+        const lon = 151.131196;
+        this.search({ text: this.searchString, lat, lon });
       },
       justEat(event) {
         event.preventDefault();
-        navigator.geolocation.getCurrentPosition((position) => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          this.search({ lat, lon });
-        });
+        const lat = -33.887906099999995;
+        const lon = 151.131196;
+        this.search({ lat, lon });
       },
       signOut(event) {
         event.preventDefault();

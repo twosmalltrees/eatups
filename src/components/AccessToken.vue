@@ -15,7 +15,6 @@
     methods: {
       setAccessTokenOrRedirect() {
         const hash = queryString.parse(this.$route.hash);
-        console.log(hash);
         const error = hash.error;
         const accessToken = hash.access_token;
         const tokenType = hash.token_type;
