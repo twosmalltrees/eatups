@@ -1,7 +1,7 @@
 import moment from 'moment';
 
 export function beginImplicitFlow() {
-  window.location = 'https://secure.meetup.com/oauth2/authorize?client_id=tbu88fvo4gmnrgpnj8d47u224e&response_type=token&redirect_uri=https://eatups.netlify.com/#/auth/';
+  window.location = 'https://secure.meetup.com/oauth2/authorize?client_id=tbu88fvo4gmnrgpnj8d47u224e&response_type=token&redirect_uri=https://eatups.netlify.com/#/auth';
 }
 
 export function deleteAccessToken() {
