@@ -16,7 +16,6 @@ function checkUserLogin(to, from, next) {
 }
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
