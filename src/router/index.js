@@ -36,7 +36,7 @@ export default new Router({
       component: Login,
     },
     {
-      path: '/access_token',
+      path: '/auth',
       name: 'AccessToken',
       component: AccessToken,
     },
